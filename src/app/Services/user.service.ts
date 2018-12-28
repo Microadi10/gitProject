@@ -8,7 +8,7 @@ export class UserService {
   constructor(private http : Http) { }
   
    private gitApi : String = "https://api.github.com/search/users?q="
-   private users : String = "https://api.github.com/users/"
+   private user : String = "https://api.github.com/users/"
 
    userList(typing){
       let url = this.gitApi.concat(typing)
@@ -19,7 +19,7 @@ export class UserService {
    }
 
    userDetails(loginId){
-      let url = this.users.concat(loginId)
+      let url = this.user.concat(loginId)
       let header = new Headers({
         'Content-Type':'application/json'
       })

@@ -1,9 +1,75 @@
 .blankslate {
-    background-color: #fafbfc;
-    border: 1px solid #e1e4e8;
-    border-radius: 3px;
-    box-shadow: inset 0 0 10px rgba(27,31,35,.05);
-    padding: 32px;
-    text-align: center;
-    margin-top : 3rem;
+  background-color: #fafbfc;
+  border: 1px solid #e1e4e8;
+  border-radius: 3px;
+  box-shadow: inset 0 0 10px rgba(27, 31, 35, .05);
+  padding: 32px;
+  text-align: center;
+  margin-top: 3rem;
 }
+
+.navrow{
+  padding-top: 0.5rem;
+  background-color: #272625c9;
+  padding-bottom: 0.5rem;
+  color: white;
+}
+.mr{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.searchbtn {
+  display: inline-block;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.countrow {
+  padding-top: 0.5rem;
+  font-size: 18px;
+  font-weight: 600;
+  padding-left: 17px;
+}
+
+.rowdata {
+  border-top: 1px solid rgba(187, 182, 182, 0.993);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+a {
+  font-size: 17px;
+  color: #1f80e4;
+  cursor: pointer;
+  font-weight: 500;
+}
+i{
+    font-size: 2.3rem;
+    color: #a3aab1;
+    margin-bottom: 0.3rem;
+}
+.font-size{
+  font-size : 14px;
+}
+
+@media (max-width : 700px){
+  .btn-p{
+    padding-left : 0px
+  }
+  .contain-p{
+    padding-right: 0px  
+  }
+}
+
+@media (max-width: 575px) {
+  .render {
+    margin-top: -66px;
+    margin-left: 50px;
+    
+  }
+  .btn-p{
+    padding-left : 15px
+  }
+}
+
+

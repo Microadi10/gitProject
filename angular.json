@@ -21,14 +21,16 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
+            
             ],
             "styles": [
-              "src/styles.css"
-              
-
+              "src/styles.css",
+              "node_modules/remodal/dist/remodal.css",
+              "node_modules/remodal/dist/remodal-default-theme.css"
             ],
             "scripts": [
-              
+              "node_modules/remodal/dist/remodal.min.js",
+              "node_modules/hammerjs/src/hammer.js"
             ]
           },
           "configurations": {

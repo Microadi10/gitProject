@@ -14,28 +14,42 @@ export class GitSearchComponent implements OnInit {
   listUser: any[];
   totalCount: number;
   notfound: String;
+  search_user_data: any;
+  searchList: Array<object>= [];
+  emptyList: any;
   
 
   constructor(private userservice : UserService) { }
 
   ngOnInit() {
+    
   }
 
   myData(){
     let typing = {
       'search' : this.search
     }
+    this.searchList = []
+    
     this.userservice.userList(this.search).subscribe(res =>{
       this.totalCount = res.json().total_count;
       this.listUser = res.json().items;
       this.notfound = this.search
+      for (let i = 0; i <= this.listUser.length/10 -1; i++) {
+        this.userservice.userDetails(this.listUser[i].login).subscribe(res => {
+          this.search_user_data = res.json();
+          this.searchList.push(this.search_user_data)
+        }, err => {
+        
+        })
+      }
     }, err =>{
-      console.log(err)
+      this.emptyList = err.json()
     })
   }
 
   keyDownFunction(event) {
-    if(event.keyCode == 13) {
+    if(event.which == 13) {
      this.myData()
     }
   }
