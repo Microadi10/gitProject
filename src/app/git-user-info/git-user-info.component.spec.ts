@@ -23,3 +23,4 @@ describe('GitUserInfoComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+  

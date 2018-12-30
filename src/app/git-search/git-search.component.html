@@ -1,7 +1,7 @@
-<div class="container-fluid " style="overflow-x : hidden">
-  <div class="row justify-content-center d-flex" style="background-color: #080808c7;">
+<div class="container-fluid overflow-x">
+  <div class="row justify-content-center d-flex bg-color">
     <ul class="col-md-8 col-sm-8 col-xs-8 mr">
-      <li class="col-md-10 col-sm-10 col-xs-10" style="display :inline-block">
+      <li class="col-md-10 col-sm-10 col-xs-10 d-inline-block">
         <input class="form-control" placeholder="Search Here" [(ngModel)]="search" (keydown)="keyDownFunction($event)">
       </li>
       <li class="col-md-2 col-sm-2 col-xs-2 searchbtn">
@@ -12,7 +12,7 @@
   <div class="row justify-content-center d-flex">
     <div class="col-lg-10">
       <div class="row countrow" *ngIf="this.totalCount > 0">
-        <p style="margin-bottom: 0.5rem;">{{this.totalCount | number}} Users Found</p>
+        <p>{{this.totalCount | number}} Users Found</p>
       </div>
       <div class="row" *ngIf="this.totalCount == 0">
         <div class="px-2 mr-auto ml-auto">
@@ -24,9 +24,9 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-center rowdata" *ngFor="let user of searchList | paginate: { itemsPerPage: 2, currentPage: p}">
+      <div class="row justify-content-center rowdata" *ngFor="let user of searchList | paginate: { itemsPerPage: 5, currentPage: p }">
         <div class="col-md-2 col-sm-2 col-xs-2">
-          <img style="width:70px; cursor:pointer;" class="img-fluid rounded" src="{{user.avatar_url}}" [routerLink]="['/userInfo', user.login]"
+          <img class="img-fluid rounded" src="{{user.avatar_url}}" [routerLink]="['/userInfo', user.login]"
             alt="user img">
         </div>
         <div class="col-md-10 col-sm-10 col-xs-10  render my-auto">
@@ -43,7 +43,7 @@
                 <span *ngIf="user.company != null">
                   <i class="font-size fa fa-briefcase" aria-hidden="true"></i> {{user.company}} |
                 </span>
-                <span *ngIf="user.blog != null" >
+                <span *ngIf="user.blog != null">
                   <i class="font-size fa fa-rss-square" aria-hidden="true"></i> {{user.blog}}
                 </span>
               </div>
@@ -52,12 +52,14 @@
               </div>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-2 btn-p render my-auto">
-             <a [routerLink]="['/userInfo/id=/',  user.login]"> <button class="btn btn-success btn-sm">More Info</button></a>
+              <a [routerLink]="['/userInfo/id=/',  user.login]"> <button class="btn btn-success btn-sm">More Info</button></a>
             </div>
           </div>
         </div>
+        <hr>
       </div>
-      <pagination-controls (pageChange)="p[i] = $event"></pagination-controls>
+
+      <pagination-controls *ngIf="this.searchList.length > 0" class="text-center pt-4" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>

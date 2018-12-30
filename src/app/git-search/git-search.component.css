@@ -52,6 +52,21 @@ i{
   font-size : 14px;
 }
 
+.overflow-x {
+  overflow-x: hidden
+}
+
+.bg-color{
+  background-color: #080808c7;
+}
+
+img{
+  width:70px; 
+  cursor:pointer;
+}
+p{
+  margin-bottom: 0.5rem
+}
 @media (max-width : 700px){
   .btn-p{
     padding-left : 0px
