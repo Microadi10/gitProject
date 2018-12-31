@@ -11,8 +11,9 @@ import { GitSearchComponent } from './git-search/git-search.component';
 import { GitUserInfoComponent } from './git-user-info/git-user-info.component';
 import { UserService } from './Services/user.service';
 import { HeaderComponent } from './header/header.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 const appRoutes : Routes =[
   { path: '', redirectTo: 'gitSearch', pathMatch: 'full'}, 
@@ -27,26 +28,28 @@ const appRoutes : Routes =[
 ] 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    GitSearchComponent,
-    GitUserInfoComponent,
-    HeaderComponent,
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     NgxPaginationModule,
     MatInputModule,
+    MatFormFieldModule,
     MatTabsModule,
     BrowserAnimationsModule, 
     MatTooltipModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {useHash:true})
   ],
+  declarations: [
+    AppComponent,
+    GitSearchComponent,
+    GitUserInfoComponent,
+    HeaderComponent,
+  ],
+ 
   providers: [
    UserService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] 
 })
 export class AppModule { }

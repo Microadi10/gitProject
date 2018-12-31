@@ -1,7 +1,7 @@
 <div class="container-fluid overflow-x">
   <div class="row justify-content-center d-flex bg-color">
     <ul class="col-md-8 col-sm-8 col-xs-8 mr">
-      <li class="col-md-10 col-sm-10 col-xs-10 d-inline-block" >
+      <li class="col-md-10 col-sm-10 col-xs-10 d-inline-block">
         <input class="form-control" placeholder="Search Here" [(ngModel)]="search" (keydown)="keyDownFunction($event)">
       </li>
       <li class="col-md-2 col-sm-2 col-xs-2 searchbtn">
@@ -17,7 +17,7 @@
       <div class="row" *ngIf="this.totalCount == 0">
         <div class="px-2 mr-auto ml-auto">
           <div class="blankslate">
-            <i class="fa fa-search"></i>
+            <i class="fa fa-search"></i>  
             <h3>
               We couldn’t find any users matching '{{this.notfound}}'
             </h3>
@@ -26,8 +26,7 @@
       </div>
       <div class="row justify-content-center rowdata" *ngFor="let user of searchList | paginate: { itemsPerPage: 5, currentPage: p}">
         <div class="col-md-2 col-sm-2 col-xs-2">
-          <img  class="img-fluid rounded" src="{{user.avatar_url}}" [routerLink]="['/userInfo', user.login]"
-            alt="user img">
+          <img class="img-fluid rounded" src="{{user.avatar_url}}" [routerLink]="['/userInfo', user.login]" alt="user img">
         </div>
         <div class="col-md-10 col-sm-10 col-xs-10  render my-auto">
           <div class="row">
@@ -43,7 +42,7 @@
                 <span *ngIf="user.company != null">
                   <i class="font-size fa fa-briefcase" aria-hidden="true"></i> {{user.company}} |
                 </span>
-                <span *ngIf="user.blog != null" >
+                <span *ngIf="user.blog != null">
                   <i class="font-size fa fa-rss-square" aria-hidden="true"></i> {{user.blog}}
                 </span>
               </div>
@@ -52,12 +51,12 @@
               </div>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-2 btn-p render my-auto">
-             <a [routerLink]="['/userInfo/id=/',  user.login]"> <button class="btn btn-success btn-sm">More Info</button></a>
+              <a [routerLink]="['/userInfo/id=/',  user.login]"> <button class="btn btn-success btn-sm">More Info</button></a>
             </div>
           </div>
         </div>
       </div>
-      <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls *ngIf="this.totalCount > 0" class="text-center" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>

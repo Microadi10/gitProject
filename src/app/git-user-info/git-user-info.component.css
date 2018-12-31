@@ -70,3 +70,6 @@ p {
 .modal-width {
   max-width: 500px;
 }
+.user-info{
+  margin-top: -12px;
+}
