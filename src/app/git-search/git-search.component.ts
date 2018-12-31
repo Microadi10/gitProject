@@ -35,19 +35,20 @@ export class GitSearchComponent implements OnInit {
       this.totalCount = res.json().total_count;
       this.listUser = res.json().items;
       this.notfound = this.search
-      for (let i = 0; i <= this.listUser.length/10 -1; i++) {
+      for (let i = 0; i <= this.listUser.length/5 -1; i++) {
         this.userservice.userDetails(this.listUser[i].login).subscribe(res => {
           this.search_user_data = res.json();
           this.searchList.push(this.search_user_data)
         }, err => {
-        
+         
         })
       }
     }, err =>{
-      this.emptyList = err.json()
+      this.emptyList = err.json().message
     })
   }
-
+  p: number = 1;
+  collection: any[] = this.searchList;  
   keyDownFunction(event) {
     if(event.which == 13) {
      this.myData()

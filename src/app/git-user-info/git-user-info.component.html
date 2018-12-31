@@ -1,9 +1,9 @@
-<div class="container-fluid pl-0 pr-0 " style="overflow-x : hiddenvbbbb ">
-  <div class="row mr-0" style="background-color: #b5b0b026">
+<div class="container-fluid pl-0 pr-0 overflow-x">
+  <div class="row mr-0 bg-color">
     <div class="m-s">
-      <a><img class="rounded" style="width : 10rem" src="{{this.image_url}}"></a>
+      <a><img class="rounded img-width" src="{{this.image_url}}"></a>
     </div>
-    <div class="col-12" style="margin-top: 5px;">
+    <div class="col-12 mt-1">
       <div class="text-center user-name">{{this.name}}</div>
       <div>
         <p class="mb-2 text-center text-dark font-size">
@@ -11,8 +11,7 @@
           <span *ngIf="this.joinDate != null">Member Since {{this.joinDate | date}}</span>
         </p>
       </div>
-      <div *ngIf="this.place != null && this.oragnization != null && this.blog != null" style=" margin-top : -5px;"
-        class="text-center font-size text-dark">
+      <div *ngIf="this.place != null && this.oragnization != null && this.blog != null" class="m-t text-center font-size text-dark">
         <div class="d-inline" *ngIf="this.place != null">
           <i class="fa fa-map-marker" aria-hidden="true"></i>{{this.place}} |
         </div>
@@ -23,7 +22,7 @@
           <i class="fa fa-rss-square" aria-hidden="true"></i> {{this.blog}}
         </div>
       </div>
-      <div *ngIf="this.bio != null" class="ml-auto mr-auto ml-2 mb-2 text-center font-size" style="width: 65%;">
+      <div *ngIf="this.bio != null" class="ml-auto mr-auto ml-2 mb-2 text-center font-size bio-width">
         <p class="mb-2">{{this.bio}}</p>
       </div>
     </div>
@@ -31,15 +30,15 @@
       <ul class="nav nav-tabs justify-content-center" id="nav-tabs" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="pills-home-tab" data-toggle="tab" href="#1" role="tab" aria-controls="pills-home"
-            aria-selected="true" style="color : #6a6b6d">Overview <span class="badge badge-pill badge-danger">{{this.repo_length}}</span></a>
+            aria-selected="true">Overview <span class="badge badge-pill badge-danger">{{this.repo_length}}</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#2" role="tab" aria-controls="pills-contact"
-            aria-selected="false" style="color : #6a6b6d" (click)="hello(this.follower_url)">Followers <span class="badge badge-pill badge-danger">{{this.followers_count}}</span></a>
+            aria-selected="false" (click)="follower(this.follower_url)">Followers <span class="badge badge-pill badge-danger">{{this.followers_count}}</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#3" role="tab" aria-controls="pills-contact"
-            aria-selected="false" style="color : #6a6b6d">Following <span class="badge badge-pill badge-danger">{{this.following_count}}</span></a>
+            aria-selected="false">Following <span class="badge badge-pill badge-danger">{{this.following_count}}</span></a>
         </li>
       </ul>
     </div>
@@ -47,23 +46,23 @@
   <div class="row justify-content-center mr-0 ">
     <div class="col-lg-9 col-md-10 col-sm-12 tab-content pr-0 justify-content-center" id="pills-tabContent">
       <div class="tab-pane fade show active" id="1" role="tabpanel" aria-labelledby="pills-home-tab">
-        <h5 class="mt-2 mb-2 ml-3 mr-3" *ngIf="this.repo_length == 0">{{this.repo_length}} Repository</h5>
+        <h6 class="mt-2 mb-2 ml-3 mr-3" *ngIf="this.repo_length > 0">{{this.repo_length}} Repository</h6>
         <div class="row" *ngIf="this.repo_length == 0">
           <div class="px-2 mr-auto ml-auto">
             <div class="blankslate">
-              <h5>
+              <h4>
                 {{this.username}} doesn't have any public Repository Yet.
-              </h5>
+              </h4>
             </div>
           </div>
         </div>
-        <div class="row pt-3 pb-3 border-top" *ngFor="let repo of this.dia">
+        <div class="row pt-3 pb-3 border-top" *ngFor="let repo of this.dia  | paginate: { itemsPerPage: 5, currentPage: p}">
           <div class="col-9 p-l-2 pr-0 font-size">
             <div class="">
               <h5><a target="_blank" href="{{repo.html_url}}">{{repo.name}}</a></h5>
             </div>
             <div>
-              <p style="margin-bottom: 0.5rem">{{repo.description}}</p>
+              <p>{{repo.description}}</p>
             </div>
             <div>
               <span class="mr-2" *ngIf="repo.language != null"><i class="fa fa-edit"></i>{{repo.language}}</span>
@@ -76,33 +75,34 @@
             <button class="btn btn-success btn-sm" (click)="openModal(repo.clone_url)">Clone</button>
           </div>
         </div>
+        <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
       </div>
       <div class="tab-pane fade " id="2" role="tabpanel" aria-labelledby="pills-home-tab">
-        <h5 class="mt-2 mb-2 ml-3 mr-3" *ngIf="this.followers_count == 0">{{this.followers_count}} Followers</h5>
+        <h6 class="mt-2 mb-2 ml-3 mr-3" *ngIf="this.followers_count > 0">{{this.followers_count}} Followers</h6>
         <div class="row" *ngIf="this.followers_count == 0">
           <div class="px-2 mr-auto ml-auto">
             <div class="blankslate">
               <i class="fa fa-users user-icon"></i>
-              <h5>
+              <h4>
                 {{this.username}} doesn't have any followers yet.
-              </h5>
+              </h4>
             </div>
           </div>
         </div>
-        <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowers">
+        <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowers  | paginate: { itemsPerPage: 5, currentPage: p}">
           <div class="col-3 text-center mt-1 pr-0">
-            <img style="width:80px;" class="img-fluid rounded" src="{{follower.avatar_url}}" alt="user img">
+            <img class="img-fluid user-img rounded" src="{{follower.avatar_url}}" alt="user img">
           </div>
-          <div class="col-9 ">
-            <div style="font-size:14px">
-              <h5 style="color : #1d67f5">{{follower.login}}</h5>
+          <div class="col-9">
+            <div class="font-size">
+              <h5>{{follower.login}}</h5>
               <span>{{follower.name}}</span>
             </div>
-            <div style="font-size : 14px">
+            <div class="font-size">
               <div *ngIf="follower.bio != null">
                 <p>{{follower.bio}}</p>
               </div>
-              <div style="margin-top: -12px">
+              <div>
                 <span class="mr-2" *ngIf="follower.company != null"><i class="fa fa-briefcase"></i>{{follower.company}}</span>
                 <span class="mr-2" *ngIf="follower.location != null"><i class="fa fa-map-marker"></i>{{follower.location}}</span>
                 <span class="mr-2" *ngIf="follower.blog != null"><i class="fa fa-rss-square"></i>{{follower.blog}}</span>
@@ -110,29 +110,30 @@
             </div>
           </div>
         </div>
+        <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
       </div>
       <div class="tab-pane fade" id="3" role="tabpanel" aria-labelledby="pills-home-tab">
-        <h5 class="mt-2 mb-2 mr-3 ml-3">{{this.following_count}} Following </h5>
+        <h6 class="mt-2 mb-2 mr-3 ml-3" *ngIf="this.following_count > 0">{{this.following_count}} Following </h6>
         <div class="row" *ngIf="this.following_count == 0">
           <div class="px-2 mr-auto ml-auto">
             <div class="blankslate">
               <i class="fa fa-users user-icon"></i>
-              <h5>
+              <h4>
                 {{this.username}} isn't following anybody yet.
-              </h5>
+              </h4>
             </div>
           </div>
         </div>
-        <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowing">
+        <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowing  | paginate: { itemsPerPage: 5, currentPage: p}">
           <div class="col-3 text-center mt-1 pr-0">
-            <img style="width:80px;" class="img-fluid rounded" src="{{follower.avatar_url}}" alt="user img">
+            <img class="img-fluid user-img rounded" src="{{follower.avatar_url}}" alt="user img">
           </div>
           <div class="col-9 ">
-            <div style="font-size:14px; margin-bottom: 10px">
-              <h5 style="color : #1d67f5">{{follower.login}}</h5>
+            <div class="font-size" style=" margin-bottom: 10px">
+              <h5>{{follower.login}}</h5>
               <span>{{follower.name}}</span>
             </div>
-            <div style="font-size : 14px">
+            <div class="font-size">
               <div *ngIf="follower.bio != null">
                 <p>{{follower.bio}}</p>
               </div>
@@ -144,12 +145,13 @@
             </div>
           </div>
         </div>
+        <pagination-controls *ngIf = "this.following_count > 0" class="text-center" (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
   </div>
 </div>
 
-<div class="remodal" id="modal" data-remodal-options="hashTracking: false, closeOnOutsideClick: true" style="max-width: 500px;">
+<div class="remodal modal-width" id="modal" data-remodal-options="hashTracking: false, closeOnOutsideClick: true">
 
   <button data-remodal-action="close" class="remodal-close" (click)="close()"></button>
 
@@ -159,7 +161,7 @@
       <mat-form-field class="col-11">
         <input matInput placeholder="Copy Url" [(ngModel)]="this.clone_url">
       </mat-form-field>
-      <button matTooltip="Info about the action"  matTooltipPosition="below"  (click)="copyLink()"><i class="fa fa-clone" aria-hidden="true" ></i></button>
+      <button (click)="copyLink()"><i class="fa fa-clone" aria-hidden="true"></i></button>
     </div>
   </div>
   <br>

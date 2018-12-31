@@ -29,9 +29,7 @@
               "node_modules/remodal/dist/remodal-default-theme.css"
             ],
             "scripts": [
-              "node_modules/remodal/dist/remodal.min.js",
-              "node_modules/hammerjs/src/hammer.js"
-            ]
+              "node_modules/remodal/dist/remodal.min.js"            ]
           },
           "configurations": {
             "production": {

@@ -40,6 +40,10 @@ export class GitUserInfoComponent implements OnInit {
   modal: any;
   remodal: any;
     clone_url: any;
+    p: number = 1;
+    following: any[] = this.listFollowing; 
+    followers : any[] = this.listFollowers
+  error: any;
 
   constructor(private route: ActivatedRoute, private userservice: UserService, private http: Http) { }
 
@@ -64,34 +68,34 @@ export class GitUserInfoComponent implements OnInit {
         this.follower_url = this.follower_url.substring(this.follower_url.indexOf("users") + 6)
         this.following_url = res.json().following_url;
         this.following_url = this.following_url.substring(0, this.following_url.indexOf("{"));
-        console.log(this.following_url)
+      
         this.http.get(res.json().repos_url).subscribe(res => {
           this.dia = res.json()
           this.repo_length = this.dia.length
-          console.log(this.dia.length)
+        
         }, err => {
-
+          this.error = err.json().message;
         })
 
         this.http.get(this.following_url).subscribe(res => {
-          console.log(res)
+      
           this.following_users_data = res.json();
           this.following_count = this.following_users_data.length;
-          for (let i = 0; i <= this.following_users_data.length / 10 - 1; i++) {
+          for (let i = 0; i <= this.following_users_data.length / 5 - 1; i++) {
             this.userservice.userDetails(this.following_users_data[i].login).subscribe(res => {
               this.following_data = res.json();
               this.listFollowing.push(this.following_data)
             }, err => {
-              console.log(err)
+             this.error = err.json().message;
             })
           }
-          console.log(this.listFollowing)
+         
         }, err => {
-          console.log(err)
+          this.error = err.json().message;
         })
 
       }, err => {
-        console.log(err)
+        this.error = err.json().message;
       })
     });
 
@@ -99,28 +103,26 @@ export class GitUserInfoComponent implements OnInit {
   }
 
 
-  hello(repourl) {
+  follower(repourl) {
     this.userservice.userDetails(repourl).subscribe(data => {
       this.followers_data = data.json();
       this.followers_count = this.followers_data.length
-      for (let i = 0; i <= this.followers_data.length / 10 - 1; i++) {
+      for (let i = 0; i <= this.followers_data.length / 5 - 1; i++) {
         this.userservice.userDetails(this.followers_data[i].login).subscribe(res => {
           this.followers_user_data = res.json();
           this.listFollowers.push(this.followers_user_data)
         }, err => {
-          console.log(err)
+          this.error = err.json().message;
         })
       }
     }, err => {
-      console.log(err)
+      this.error = err.json().message;
     })
   }
 
   openModal(cloneurl) {
     this.modal.open();
-
     this.clone_url = cloneurl;
-
   }
 
   close() {
@@ -128,9 +130,7 @@ export class GitUserInfoComponent implements OnInit {
   }
 
   copyLink(){
-  
    $( "input" ).select();
-  
    document.execCommand("copy")
   }
 }

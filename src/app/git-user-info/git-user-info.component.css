@@ -1,29 +1,72 @@
+.font-size {
+  font-size: 14px;
+}
 
-.font-size{
-    font-size: 14px;
+.user-name {
+  font-size: 23px;
+  color: #0d56da;
+  margin-top: -12px;
 }
-.user-name{
-    font-size: 23px;
-    color: #0d56da;
-    margin-top: -12px;
+
+.m-s {
+  margin: 15px auto 15px auto;
 }
-.m-s{
-    margin:15px auto 15px auto;
+
+.p-l-2 {
+  padding-left: 2rem;
 }
-.p-l-2{
-    padding-left: 2rem;
-}
+
 .blankslate {
-    background-color: #fafbfc;
-    border: 1px solid #e1e4e8;
-    border-radius: 3px;
-    box-shadow: inset 0 0 10px rgba(27, 31, 35, .05);
-    padding:  25px 100px;
-    text-align: center;
-    margin-top: 3rem;
-  }
+  background-color: #fafbfc;
+  border: 1px solid #e1e4e8;
+  border-radius: 3px;
+  box-shadow: inset 0 0 10px rgba(27, 31, 35, .05);
+  padding: 25px 100px;
+  text-align: center;
+  margin-top: 3rem;
+}
 
- .user-icon{
-    font-size: 25px;
-    color: #b5b5b5;
- }
+.user-icon {
+  font-size: 25px;
+  color: #b5b5b5;
+}
+
+ul li a {
+  color: #6a6b6d;
+}
+
+h5 {
+  color: #1d67f5;
+}
+
+p {
+  margin-bottom: 0.5rem
+}
+
+.overflow-x {
+  overflow-x: hidden
+}
+
+.bg-color {
+  background-color: #b5b0b026
+}
+
+.img-width {
+  width: 10rem;
+}
+
+.bio-width {
+  width: 65%
+}
+
+.m-t {
+  margin-top: -5px;
+}
+
+.user-img {
+  width: 80px;
+}
+
+.modal-width {
+  max-width: 500px;
+}

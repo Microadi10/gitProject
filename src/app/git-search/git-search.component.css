@@ -8,16 +8,18 @@
   margin-top: 3rem;
 }
 
-.navrow{
+.navrow {
   padding-top: 0.5rem;
   background-color: #272625c9;
   padding-bottom: 0.5rem;
   color: white;
 }
-.mr{
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+
+.mr {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
+
 .searchbtn {
   display: inline-block;
   margin-top: 1rem;
@@ -43,21 +45,38 @@ a {
   cursor: pointer;
   font-weight: 500;
 }
-i{
-    font-size: 2.3rem;
-    color: #a3aab1;
-    margin-bottom: 0.3rem;
-}
-.font-size{
-  font-size : 14px;
+
+i {
+  font-size: 2.3rem;
+  color: #a3aab1;
+  margin-bottom: 0.3rem;
 }
 
-@media (max-width : 700px){
-  .btn-p{
-    padding-left : 0px
+.font-size {
+  font-size: 14px;
+}
+
+.overflow-x {
+  overflow-x: hidden;
+}
+
+.bg-color {
+  background-color: #080808c7;
+}
+
+img {
+  width: 70px;
+  cursor: pointer;
+}
+
+
+@media (max-width : 700px) {
+  .btn-p {
+    padding-left: 0px
   }
-  .contain-p{
-    padding-right: 0px  
+
+  .contain-p {
+    padding-right: 0px
   }
 }
 
@@ -65,11 +84,10 @@ i{
   .render {
     margin-top: -66px;
     margin-left: 50px;
-    
+
   }
-  .btn-p{
-    padding-left : 15px
+
+  .btn-p {
+    padding-left: 15px
   }
 }
-
-
