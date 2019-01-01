@@ -50,6 +50,7 @@ export class GitSearchComponent implements OnInit {
   }
   p: number = 1;
   collection: any[] = this.searchList;  
+  
   keyDownFunction(event) {
     if(event.which == 13) {
      this.myData()
