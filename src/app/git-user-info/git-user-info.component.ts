@@ -81,20 +81,20 @@ export class GitUserInfoComponent implements OnInit {
         this.http.get(this.following_url).subscribe(res => {
           this.following_users_data = res.json();
           this.following_count = this.following_users_data.length;
-          for (let i = 0; i <= this.following_users_data.length/ 3 -1; i++) {
+          for (let i = 0; i < this.following_users_data.length; i++) {
             this.userservice.userDetails(this.following_users_data[i].login).subscribe(res => {
               this.following_data = res.json();
               this.listFollowing.push(this.following_data)
             }, err => {
-              this.error = err.json();
+              this.error = err.json().message;
             })
           }
         }, err => {
-          this.error = err.json();
+          this.error = err.json().message;
         })
 
       }, err => {
-        this.error = err.json();
+        this.error = err.json().message;
       })
     });
 
@@ -105,7 +105,7 @@ export class GitUserInfoComponent implements OnInit {
     this.userservice.userDetails(repourl).subscribe(data => {
       this.followers_data = data.json();
       this.followers_count = this.followers_data.length
-      for (let i = 0; i <= this.followers_data.length / 3 - 1; i++) {
+      for (let i = 0; i < this.followers_data.length; i++) {
         this.userservice.userDetails(this.followers_data[i].login).subscribe(res => {
           this.followers_user_data = res.json();
           this.listFollowers.push(this.followers_user_data)
