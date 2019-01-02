@@ -36,7 +36,7 @@ export class GitSearchComponent implements OnInit {
       this.totalCount = res.json().total_count;
       this.listUser = res.json().items;
       this.notfound = this.search
-      for (let i = 0; i < this.listUser.length/5 ; i++) {
+      for (let i = 0; i < this.listUser.length ; i++) {
         this.userservice.userDetails(this.listUser[i].login).subscribe(res => {
           this.search_user_data = res.json();
           this.searchList.push(this.search_user_data)

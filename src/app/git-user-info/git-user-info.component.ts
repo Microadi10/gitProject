@@ -13,19 +13,18 @@ declare var $: any;
 
 export class GitUserInfoComponent implements OnInit {
   loginId: any;
-  name: any;
-  username: any;
-  email: any;
-  oragnization: any;
-  place: any;
+  name: string;
+  username: string;
+  email: string;
+  oragnization: string;
+  place: string;
   joinDate: any;
   image_url: any;
-  blog: any;
+  blog: string;
   repo_url: string;
   follower_url: string;
   following_url: string;
   follow: any;
-  dia: any[];
   license: any;
   repo_length: number;
   followers_data: any[];
@@ -44,6 +43,7 @@ export class GitUserInfoComponent implements OnInit {
     following: any[] = this.listFollowing; 
     followers : any[] = this.listFollowers
   error: any;
+  userrepo: any[];
 
   constructor(private route: ActivatedRoute, private userservice: UserService, private http: Http) { }
 
@@ -70,8 +70,8 @@ export class GitUserInfoComponent implements OnInit {
         this.following_url = this.following_url.substring(0, this.following_url.indexOf("{"));
       
         this.http.get(res.json().repos_url).subscribe(res => {
-          this.dia = res.json()
-          this.repo_length = this.dia.length
+          this.userrepo = res.json()
+          this.repo_length = this.userrepo.length
         
         }, err => {
           this.error = err.json().message;
@@ -81,7 +81,7 @@ export class GitUserInfoComponent implements OnInit {
       
           this.following_users_data = res.json();
           this.following_count = this.following_users_data.length;
-          for (let i = 0; i <= this.following_users_data.length / 5 - 1; i++) {
+          for (let i = 0; i < this.following_users_data.length; i++) {
             this.userservice.userDetails(this.following_users_data[i].login).subscribe(res => {
               this.following_data = res.json();
               this.listFollowing.push(this.following_data)
@@ -107,7 +107,7 @@ export class GitUserInfoComponent implements OnInit {
     this.userservice.userDetails(repourl).subscribe(data => {
       this.followers_data = data.json();
       this.followers_count = this.followers_data.length
-      for (let i = 0; i <= this.followers_data.length / 5 - 1; i++) {
+      for (let i = 0; i < this.followers_data.length ; i++) {
         this.userservice.userDetails(this.followers_data[i].login).subscribe(res => {
           this.followers_user_data = res.json();
           this.listFollowers.push(this.followers_user_data)
