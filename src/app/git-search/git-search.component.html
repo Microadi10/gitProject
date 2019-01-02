@@ -56,11 +56,10 @@
                 </div>
               </div>
             </div>
-            <hr>
           </div>
-          <pagination-controls *ngIf="this.totalCount > 0" class="text-center" (pageChange)="p = $event"></pagination-controls>
         </div>
       </div>
+      <pagination-controls *ngIf="this.searchList.length > 0" class="text-center pt-4" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>

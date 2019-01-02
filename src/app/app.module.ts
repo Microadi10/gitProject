@@ -32,9 +32,7 @@ const appRoutes : Routes =[
     HttpModule,
     NgxPaginationModule,
     MatInputModule,
-
     MatFormFieldModule,
- 
     BrowserAnimationsModule, 
     MatTooltipModule,
     RouterModule.forRoot(appRoutes, {useHash:true})

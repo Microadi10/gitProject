@@ -11,7 +11,7 @@
           <span *ngIf="this.joinDate != null">Member Since {{this.joinDate | date}}</span>
         </p>
       </div>
-      <div *ngIf="this.place != null && this.oragnization != null && this.blog != null" class="m-t text-center font-size text-dark">
+      <div *ngIf="this.place != null && this.oragnization != null && this.blog != null" class="text-center font-size text-dark m-t">
         <div class="d-inline" *ngIf="this.place != null">
           <i class="fa fa-map-marker" aria-hidden="true"></i>{{this.place}} |
         </div>
@@ -35,7 +35,6 @@
         <li class="nav-item">
           <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#2" role="tab" aria-controls="pills-contact"
             aria-selected="false" (click)="followers(this.follower_url)">Followers <span class="badge badge-pill badge-danger">{{this.followers_count}}</span></a>
-
         </li>
         <li class="nav-item">
           <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#3" role="tab" aria-controls="pills-contact"
@@ -145,7 +144,7 @@
                     <div *ngIf="follower.bio != null">
                       <p>{{follower.bio}}</p>
                     </div>
-                    <div class="follower-info"> 
+                    <div class="follower-info">
                       <span class="mr-2"><i class="fa fa-briefcase mr-1"></i>{{follower.company}}</span>
                       <span class="mr-2"><i class="fa fa-map-marker mr-1"></i>{{follower.location}}</span>
                       <span class="mr-2"><i class="fa fa-rss-square mr-1"></i>{{follower.blog}}</span>
@@ -159,16 +158,18 @@
           </div>
         </div>
       </div>
-
-      <div class="remodal modal-width" id="modal" data-remodal-options="hashTracking: false, closeOnOutsideClick: true">
-        <button data-remodal-action="close" class="remodal-close" (click)="close()"></button>
-        <h5>Clone with HTTPS </h5>
-        <div class="row">
-          <div class="col-12">
-            <mat-form-field class="col-11">
-              <input matInput placeholder="Copy Url" [(ngModel)]="this.clone_url" name="clone_url" readonly>
-            </mat-form-field>
-            <button (click)="copyLink()"><i class="fa fa-clone" aria-hidden="true"></i></button>
-          </div>
-        </div>
-      </div>
+    </div>
+  </div>
+</div>
+<div class="remodal modal-width" id="modal" data-remodal-options="hashTracking: false, closeOnOutsideClick: true">
+  <button data-remodal-action="close" class="remodal-close" (click)="close()"></button>
+  <h5>Clone with HTTPS </h5>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field class="col-11">
+        <input matInput placeholder="Copy Url" [(ngModel)]="this.clone_url" name="clone_url" readonly>
+      </mat-form-field>
+      <button (click)="copyLink()"><i class="fa fa-clone" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>

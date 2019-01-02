@@ -42,7 +42,7 @@ export class GitSearchComponent implements OnInit {
           this.search_user_data = res.json();
           this.searchList.push(this.search_user_data)
         }, err => {
-          this.error = err.json().message;
+        this.error = err.json().message;
         })
       }
     }, err => {
@@ -50,7 +50,9 @@ export class GitSearchComponent implements OnInit {
     })
   }
   p: number = 1;
-  collection: any[] = this.searchList;
+  listBar: any[] = this.searchList;  
+
+
   keyDownFunction(event) {
     if (event.which == 13) {
       this.myData()

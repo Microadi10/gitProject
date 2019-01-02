@@ -31,43 +31,39 @@
   color: #b5b5b5;
 }
 
-ul li a {
-  color: #6a6b6d;
+.bg-color {
+  background-color: #b5b0b026
 }
 
-h5 {
-  color: #1d67f5;
+.img-width {
+  width: 10rem
+}
+
+.m-t {
+  margin-top: -5px;
+}
+
+.bio.width {
+  width: 65%;
+}
+
+ul li a {
+  color: #6a6b6d
 }
 
 p {
   margin-bottom: 0.5rem
 }
 
-.bg-color {
-  background-color: #b5b0b026
-}
-
-.img-width {
-  width: 10rem;
-}
-
-.bio-width {
-  width: 65%
-}
-
-.m-t {
-  margin-top: -5px;
-}
-.user-img {
-  width: 80px;
+h5 {
+  color: #1d67f5
 }
 
 .modal-width {
   max-width: 500px;
 }
-
-.user-info {
-  margin-top: -12px;
+.user-img {
+  width: 80px;
 }
 
 .overflow-x {

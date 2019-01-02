@@ -39,14 +39,12 @@ export class GitUserInfoComponent implements OnInit {
   bio: string;
   modal: any;
   remodal: any;
-
   clone_url: any;
   p: number = 1;
   following: any[] = this.listFollowing;
   follower: any[] = this.listFollowers
   error: any;
-  userrepo: any[];
-
+  userrepo: any;
 
   constructor(private route: ActivatedRoute, private userservice: UserService, private http: Http) { }
 
@@ -71,8 +69,6 @@ export class GitUserInfoComponent implements OnInit {
         this.follower_url = this.follower_url.substring(this.follower_url.indexOf("users") + 6)
         this.following_url = res.json().following_url;
         this.following_url = this.following_url.substring(0, this.following_url.indexOf("{"));
-
-
         this.http.get(res.json().repos_url).subscribe(res => {
           this.userrepo = res.json()
           this.repo_length = this.userrepo.length
