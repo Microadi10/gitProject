@@ -12,7 +12,7 @@
   <div class="row justify-content-center d-flex">
     <div class="col-lg-10">
       <div class="row countrow" *ngIf="this.totalCount > 0">
-        <p>{{this.totalCount | number}} Users Found</p>
+        <p class="mt-2">{{this.totalCount | number}} Users Found</p>
       </div>
       <div class="row" *ngIf="this.totalCount == 0">
         <div class="px-2 mr-auto ml-auto">
@@ -24,42 +24,43 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-center rowdata" *ngFor="let user of searchList | paginate: { itemsPerPage: 5, currentPage: p }">
+      <div class="row justify-content-center rowdata" *ngFor="let user of searchList | paginate: { itemsPerPage: 5, currentPage: p}">
         <div class="col-md-2 col-sm-2 col-xs-2">
-          <img class="img-fluid rounded" src="{{user.avatar_url}}" [routerLink]="['/userInfo', user.login]"
-            alt="user img">
-        </div>
-        <div class="col-md-10 col-sm-10 col-xs-10  render my-auto">
-          <div class="row">
-            <div class="col-md-10 col-sm-10 col-xs-10 mb-1 contain-p render">
-              <div>
-                <a [routerLink]="['/userInfo/id=/',  user.login]">{{user.login}}</a>
-                <span class="ml-3">{{user.name}}</span>
-              </div>
-              <div class="font-size text-dark">
-                <span *ngIf="user.location != null">
-                  <i class="font-size fa fa-map-marker" aria-hidden="true"></i>{{user.location}} |
-                </span>
-                <span *ngIf="user.company != null">
-                  <i class="font-size fa fa-briefcase" aria-hidden="true"></i> {{user.company}} |
-                </span>
-                <span *ngIf="user.blog != null">
-                  <i class="font-size fa fa-rss-square" aria-hidden="true"></i> {{user.blog}}
-                </span>
-              </div>
-              <div class="font-size">
-                <p class="mb-0">{{user.bio}}</p>
+          <img class="img-fluid rounded" src="{{user.avatar_url}}" [routerLink]="['/userInfo/id=/', user.login]" alt="user img">
+          <div class="row justify-content-center rowdata" *ngFor="let user of searchList | paginate: { itemsPerPage: 5, currentPage: p }">
+            <div class="col-md-10 col-sm-10 col-xs-10  render my-auto">
+              <div class="row">
+                <div class="col-md-10 col-sm-10 col-xs-10 mb-1 contain-p render">
+                  <div>
+                    <a [routerLink]="['/userInfo/id=/',  user.login]">{{user.login}}</a>
+                    <span class="ml-3">{{user.name}}</span>
+                  </div>
+                  <div class="font-size text-dark">
+                    <span *ngIf="user.location != null">
+                      <i class="font-size fa fa-map-marker" aria-hidden="true"></i>{{user.location}} |
+                    </span>
+                    <span *ngIf="user.company != null">
+                      <i class="font-size fa fa-briefcase" aria-hidden="true"></i> {{user.company}} |
+                    </span>
+                    <span *ngIf="user.blog != null">
+                      <i class="font-size fa fa-rss-square" aria-hidden="true"></i> {{user.blog}}
+                    </span>
+                  </div>
+                  <div class="font-size">
+                    <p class="mb-0">{{user.bio}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 btn-p render my-auto">
+                  <a [routerLink]="['/userInfo/id=/',  user.login]"> <button class="btn btn-success btn-sm">More
+                      Info</button></a>
+                </div>
               </div>
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 btn-p render my-auto">
-              <a [routerLink]="['/userInfo/id=/',  user.login]"> <button class="btn btn-success btn-sm">More Info</button></a>
-            </div>
+            <hr>
           </div>
+          <pagination-controls *ngIf="this.totalCount > 0" class="text-center" (pageChange)="p = $event"></pagination-controls>
         </div>
-        <hr>
       </div>
-
-      <pagination-controls *ngIf="this.searchList.length > 0" class="text-center pt-4" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>

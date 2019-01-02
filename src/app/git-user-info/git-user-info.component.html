@@ -11,7 +11,7 @@
           <span *ngIf="this.joinDate != null">Member Since {{this.joinDate | date}}</span>
         </p>
       </div>
-      <div *ngIf="this.place != null && this.oragnization != null && this.blog != null" class="text-center font-size text-dark m-t">
+      <div *ngIf="this.place != null && this.oragnization != null && this.blog != null" class="m-t text-center font-size text-dark">
         <div class="d-inline" *ngIf="this.place != null">
           <i class="fa fa-map-marker" aria-hidden="true"></i>{{this.place}} |
         </div>
@@ -35,6 +35,7 @@
         <li class="nav-item">
           <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#2" role="tab" aria-controls="pills-contact"
             aria-selected="false" (click)="followers(this.follower_url)">Followers <span class="badge badge-pill badge-danger">{{this.followers_count}}</span></a>
+
         </li>
         <li class="nav-item">
           <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#3" role="tab" aria-controls="pills-contact"
@@ -57,7 +58,7 @@
             </div>
           </div>
         </div>
-        <div class="row pt-3 pb-3 border-top" *ngFor="let repo of this.dia | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div class="row pt-3 pb-3 border-top" *ngFor="let repo of this.userrepo  | paginate: { itemsPerPage: 5, currentPage: p}">
           <div class="col-9 p-l-2 pr-0 font-size">
             <div class="">
               <h5><a target="_blank" href="{{repo.html_url}}">{{repo.name}}</a></h5>
@@ -76,9 +77,9 @@
             <button class="btn btn-success btn-sm" (click)="openModal(repo.clone_url)">Clone</button>
           </div>
         </div>
-        <pagination-controls class="text-center pt-4" (pageChange)="p = $event"></pagination-controls>
+        <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
       </div>
-      <div class="tab-pane fade" id="2" role="tabpanel" aria-labelledby="pills-home-tab">
+      <div class="tab-pane fade " id="2" role="tabpanel" aria-labelledby="pills-home-tab">
         <h6 class="mt-2 mb-2 ml-3 mr-3" *ngIf="this.followers_count > 0">{{this.followers_count}} Followers</h6>
         <div class="row" *ngIf="this.followers_count == 0">
           <div class="px-2 mr-auto ml-auto">
@@ -90,9 +91,9 @@
             </div>
           </div>
         </div>
-        <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowers | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowers  | paginate: { itemsPerPage: 5, currentPage: p}">
           <div class="col-3 text-center mt-1 pr-0">
-            <img class="img-fluid rounded user-img" src="{{follower.avatar_url}}" alt="user img">
+            <img class="img-fluid user-img rounded" src="{{follower.avatar_url}}" alt="user img">
           </div>
           <div class="col-9">
             <div class="font-size">
@@ -111,10 +112,10 @@
             </div>
           </div>
         </div>
-        <pagination-controls class="text-center pt-4" (pageChange)="p = $event"></pagination-controls>
+        <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
       </div>
       <div class="tab-pane fade" id="3" role="tabpanel" aria-labelledby="pills-home-tab">
-        <h6 class="mt-2 mb-2 mr-3 ml-3">{{this.following_count}} Following </h6>
+        <h6 class="mt-2 mb-2 mr-3 ml-3" *ngIf="this.following_count > 0">{{this.following_count}} Following </h6>
         <div class="row" *ngIf="this.following_count == 0">
           <div class="px-2 mr-auto ml-auto">
             <div class="blankslate">
@@ -125,46 +126,49 @@
             </div>
           </div>
         </div>
-        <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowing | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowing  | paginate: { itemsPerPage: 5, currentPage: p}">
           <div class="col-3 text-center mt-1 pr-0">
-            <img class="img-fluid rounded user-img" src="{{follower.avatar_url}}" alt="user img">
+            <img class="img-fluid user-img rounded" src="{{follower.avatar_url}}" alt="user img">
           </div>
-          <div class="col-9 ">
-            <div class="font-size m-b">
-              <h5>{{follower.login}}</h5>
-              <span>{{follower.name}}</span>
-            </div>
-            <div class="font-size">
-              <div *ngIf="follower.bio != null">
-                <p>{{follower.bio}}</p>
+          <div class="col-9">
+            <div class="font-size mb-2">
+              <div class="row pt-3 pb-3 border-top" *ngFor="let follower of listFollowing | paginate: { itemsPerPage: 5, currentPage: p }">
+                <div class="col-3 text-center mt-1 pr-0">
+                  <img class="img-fluid rounded user-img" src="{{follower.avatar_url}}" alt="user img">
+                </div>
+                <div class="col-9 ">
+                  <div class="font-size m-b">
+                    <h5>{{follower.login}}</h5>
+                    <span>{{follower.name}}</span>
+                  </div>
+                  <div class="font-size">
+                    <div *ngIf="follower.bio != null">
+                      <p>{{follower.bio}}</p>
+                    </div>
+                    <div class="follower-info"> 
+                      <span class="mr-2"><i class="fa fa-briefcase mr-1"></i>{{follower.company}}</span>
+                      <span class="mr-2"><i class="fa fa-map-marker mr-1"></i>{{follower.location}}</span>
+                      <span class="mr-2"><i class="fa fa-rss-square mr-1"></i>{{follower.blog}}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="follower-info">
-                <span class="mr-2"><i class="fa fa-briefcase mr-1"></i>{{follower.company}}</span>
-                <span class="mr-2"><i class="fa fa-map-marker mr-1"></i>{{follower.location}}</span>
-                <span class="mr-2"><i class="fa fa-rss-square mr-1"></i>{{follower.blog}}</span>
-              </div>
+              <pagination-controls *ngIf="this.following_count > 0" class="text-center" (pageChange)="p = $event">
+              </pagination-controls>
             </div>
           </div>
         </div>
-        <pagination-controls class="text-center pt-4" (pageChange)="p = $event"></pagination-controls>
       </div>
-    </div>
-  </div>
-</div>
 
-<div class="remodal" id="modal" data-remodal-options="hashTracking: false, closeOnOutsideClick: true" class="modal-width">
-
-  <button data-remodal-action="close" class="remodal-close" (click)="close()"></button>
-
-  <h5>Clone with HTTPS </h5>
-  <div class="row">
-    <div class="col-12">
-      <mat-form-field class="col-11">
-        <input matInput placeholder="Copy Url" [(ngModel)]="this.clone_url">
-      </mat-form-field>
-      <button matTooltip="copy URL to clipboard" matTooltipPosition="below" (click)="copyLink()"><i class="fa fa-clone"
-          aria-hidden="true"></i></button>
-    </div>
-  </div>
-  <br>
-</div>
+      <div class="remodal modal-width" id="modal" data-remodal-options="hashTracking: false, closeOnOutsideClick: true">
+        <button data-remodal-action="close" class="remodal-close" (click)="close()"></button>
+        <h5>Clone with HTTPS </h5>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field class="col-11">
+              <input matInput placeholder="Copy Url" [(ngModel)]="this.clone_url" name="clone_url" readonly>
+            </mat-form-field>
+            <button (click)="copyLink()"><i class="fa fa-clone" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>

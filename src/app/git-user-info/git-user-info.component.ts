@@ -14,19 +14,18 @@ declare var $: any;
 
 export class GitUserInfoComponent implements OnInit {
   loginId: any;
-  name: any;
-  username: any;
-  email: any;
-  oragnization: any;
-  place: any;
+  name: string;
+  username: string;
+  email: string;
+  oragnization: string;
+  place: string;
   joinDate: any;
   image_url: any;
-  blog: any;
+  blog: string;
   repo_url: string;
   follower_url: string;
   following_url: string;
   follow: any;
-  dia: any[];
   license: any;
   repo_length: number;
   followers_data: any[];
@@ -40,12 +39,14 @@ export class GitUserInfoComponent implements OnInit {
   bio: string;
   modal: any;
   remodal: any;
+
   clone_url: any;
   p: number = 1;
-  paro: any[] = this.dia;
-  follower: any[] = this.listFollowers;
   following: any[] = this.listFollowing;
+  follower: any[] = this.listFollowers
   error: any;
+  userrepo: any[];
+
 
   constructor(private route: ActivatedRoute, private userservice: UserService, private http: Http) { }
 
@@ -71,11 +72,12 @@ export class GitUserInfoComponent implements OnInit {
         this.following_url = res.json().following_url;
         this.following_url = this.following_url.substring(0, this.following_url.indexOf("{"));
 
+
         this.http.get(res.json().repos_url).subscribe(res => {
-          this.dia = res.json()
-          this.repo_length = this.dia.length
+          this.userrepo = res.json()
+          this.repo_length = this.userrepo.length
         }, err => {
-          this.error = err.json()
+          this.error = err.json().message;
         })
 
         this.http.get(this.following_url).subscribe(res => {
@@ -87,7 +89,8 @@ export class GitUserInfoComponent implements OnInit {
               this.listFollowing.push(this.following_data)
             }, err => {
               this.error = err.json().message;
-            })
+            });
+
           }
         }, err => {
           this.error = err.json().message;
@@ -96,39 +99,38 @@ export class GitUserInfoComponent implements OnInit {
       }, err => {
         this.error = err.json().message;
       })
-    });
-
-  }
-
-
-  followers(repourl) {
-    this.userservice.userDetails(repourl).subscribe(data => {
-      this.followers_data = data.json();
-      this.followers_count = this.followers_data.length
-      for (let i = 0; i < this.followers_data.length; i++) {
-        this.userservice.userDetails(this.followers_data[i].login).subscribe(res => {
-          this.followers_user_data = res.json();
-          this.listFollowers.push(this.followers_user_data)
-        }, err => {
-          this.error = err.json().message
-        })
-      }
-    }, err => {
-      this.error = err.json().message;
     })
+
   }
 
-  openModal(cloneurl) {
-    this.modal.open();
-    this.clone_url = cloneurl;
-  }
+    followers(repourl){
+      this.userservice.userDetails(repourl).subscribe(data => {
+        this.followers_data = data.json();
+        this.followers_count = this.followers_data.length
+        for (let i = 0; i < this.followers_data.length; i++) {
+          this.userservice.userDetails(this.followers_data[i].login).subscribe(res => {
+            this.followers_user_data = res.json();
+            this.listFollowers.push(this.followers_user_data)
+          }, err => {
+            this.error = err.json().messag
+          })
+        }
+      }, err => {
+        this.error = err.json().message;
+      })
+    }
 
-  close() {
-    this.modal.close();
-  }
+    openModal(cloneurl) {
+      this.modal.open();
+      this.clone_url = cloneurl;
+    }
 
-  copyLink() {
-    $("input").select();
-    document.execCommand("copy")
+    close() {
+      this.modal.close();
+    }
+
+    copyLink() {
+      $("input").select();
+      document.execCommand("copy")
+    }
   }
-}

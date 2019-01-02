@@ -29,9 +29,16 @@
               "node_modules/remodal/dist/remodal-default-theme.css"
             ],
             "scripts": [
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+              "node_modules/remodal/dist/remodal.min.js"            ]
+=======
+>>>>>>> aditya
               "node_modules/remodal/dist/remodal.min.js"
            
             ]
+>>>>>>> master
           },
           "configurations": {
             "production": {
