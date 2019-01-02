@@ -57,6 +57,7 @@ i {
 }
 
 .overflow-x {
+<<<<<<< HEAD
   overflow-x: hidden;
 }
 
@@ -73,6 +74,25 @@ img {
 @media (max-width : 700px) {
   .btn-p {
     padding-left: 0px
+=======
+  overflow-x: hidden
+}
+
+.bg-color{
+  background-color: #080808c7;
+}
+
+img{
+  width:70px; 
+  cursor:pointer;
+}
+p{
+  margin-bottom: 0.5rem
+}
+@media (max-width : 700px){
+  .btn-p{
+    padding-left : 0px
+>>>>>>> master
   }
 
   .contain-p {

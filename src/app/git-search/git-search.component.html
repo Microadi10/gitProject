@@ -12,7 +12,11 @@
   <div class="row justify-content-center d-flex">
     <div class="col-lg-10">
       <div class="row countrow" *ngIf="this.totalCount > 0">
+<<<<<<< HEAD
         <p class="mt-2">{{this.totalCount | number}} Users Found</p>
+=======
+        <p>{{this.totalCount | number}} Users Found</p>
+>>>>>>> master
       </div>
       <div class="row" *ngIf="this.totalCount == 0">
         <div class="px-2 mr-auto ml-auto">
@@ -24,9 +28,16 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <div class="row justify-content-center rowdata" *ngFor="let user of searchList | paginate: { itemsPerPage: 5, currentPage: p}">
         <div class="col-md-2 col-sm-2 col-xs-2">
           <img class="img-fluid rounded" src="{{user.avatar_url}}" [routerLink]="['/userInfo', user.login]" alt="user img">
+=======
+      <div class="row justify-content-center rowdata" *ngFor="let user of searchList | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <img class="img-fluid rounded" src="{{user.avatar_url}}" [routerLink]="['/userInfo', user.login]"
+            alt="user img">
+>>>>>>> master
         </div>
         <div class="col-md-10 col-sm-10 col-xs-10  render my-auto">
           <div class="row">
@@ -55,8 +66,14 @@
             </div>
           </div>
         </div>
+        <hr>
       </div>
+<<<<<<< HEAD
       <pagination-controls *ngIf="this.totalCount > 0" class="text-center" (pageChange)="p = $event"></pagination-controls>
+=======
+
+      <pagination-controls *ngIf="this.searchList.length > 0" class="text-center pt-4" (pageChange)="p = $event"></pagination-controls>
+>>>>>>> master
     </div>
   </div>
 </div>

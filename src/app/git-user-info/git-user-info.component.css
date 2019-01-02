@@ -31,6 +31,7 @@
   color: #b5b5b5;
 }
 
+<<<<<<< HEAD
 ul li a {
   color: #6a6b6d;
 }
@@ -61,15 +62,61 @@ p {
 
 .m-t {
   margin-top: -5px;
+=======
+.bg-color {
+  background-color: #b5b0b026
+}
+
+.img-width {
+  width: 10rem
+}
+
+.m-t {
+  margin-top: -5px;
+}
+
+.bio.width {
+  width: 65%;
+}
+
+ul li a {
+  color: #6a6b6d
+}
+
+p {
+  margin-bottom: 0.5rem
+}
+
+h5 {
+  color: #1d67f5
+}
+
+.modal-width {
+  max-width: 500px;
+>>>>>>> master
 }
 
 .user-img {
   width: 80px;
 }
 
+<<<<<<< HEAD
 .modal-width {
   max-width: 500px;
 }
 .user-info{
   margin-top: -12px;
 }
+=======
+.overflow-x {
+  overflow-x: hidden
+}
+
+.follower-info {
+  margin-top: -12px
+}
+
+.m-b {
+  margin-bottom: 10px
+}
+>>>>>>> master

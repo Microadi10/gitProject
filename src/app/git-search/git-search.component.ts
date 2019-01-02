@@ -18,8 +18,9 @@ export class GitSearchComponent implements OnInit {
   search_user_data: any;
   searchList: Array<object>= [];
   emptyList: any;
+  error: any;
+   
   
-
   constructor(private userservice : UserService) { }
 
   ngOnInit() {
@@ -41,6 +42,7 @@ export class GitSearchComponent implements OnInit {
           this.search_user_data = res.json();
           this.searchList.push(this.search_user_data)
         }, err => {
+<<<<<<< HEAD
          
         })
       }
@@ -51,6 +53,19 @@ export class GitSearchComponent implements OnInit {
   p: number = 1;
   collection: any[] = this.searchList;  
   
+=======
+        this.error = err.json().message;
+        })
+      }
+    }, err =>{
+      this.emptyList = err.json().message;
+    })
+  }
+  p: number = 1;
+  listBar: any[] = this.searchList;  
+
+
+>>>>>>> master
   keyDownFunction(event) {
     if(event.which == 13) {
      this.myData()

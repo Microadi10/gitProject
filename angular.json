@@ -29,7 +29,13 @@
               "node_modules/remodal/dist/remodal-default-theme.css"
             ],
             "scripts": [
+<<<<<<< HEAD
               "node_modules/remodal/dist/remodal.min.js"            ]
+=======
+              "node_modules/remodal/dist/remodal.min.js"
+           
+            ]
+>>>>>>> master
           },
           "configurations": {
             "production": {

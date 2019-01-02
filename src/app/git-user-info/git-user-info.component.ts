@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
 import { Http } from '@angular/http';
 
+
 declare var $: any;
 
 @Component({
@@ -38,17 +39,26 @@ export class GitUserInfoComponent implements OnInit {
   bio: string;
   modal: any;
   remodal: any;
+<<<<<<< HEAD
     clone_url: any;
     p: number = 1;
     following: any[] = this.listFollowing; 
     followers : any[] = this.listFollowers
   error: any;
   userrepo: any[];
+=======
+  clone_url: any;
+  p: number = 1;
+  paro: any[] = this.dia;
+  follower: any[] = this.listFollowers;
+  following: any[] = this.listFollowing;
+  error: any;
+>>>>>>> master
 
   constructor(private route: ActivatedRoute, private userservice: UserService, private http: Http) { }
 
   ngOnInit() {
-    
+
     this.modal = $('#modal').remodal();
 
     this.route.paramMap.subscribe(params => {
@@ -68,6 +78,7 @@ export class GitUserInfoComponent implements OnInit {
         this.follower_url = this.follower_url.substring(this.follower_url.indexOf("users") + 6)
         this.following_url = res.json().following_url;
         this.following_url = this.following_url.substring(0, this.following_url.indexOf("{"));
+<<<<<<< HEAD
       
         this.http.get(res.json().repos_url).subscribe(res => {
           this.userrepo = res.json()
@@ -79,6 +90,17 @@ export class GitUserInfoComponent implements OnInit {
 
         this.http.get(this.following_url).subscribe(res => {
       
+=======
+
+        this.http.get(res.json().repos_url).subscribe(res => {
+          this.dia = res.json()
+          this.repo_length = this.dia.length
+        }, err => {
+          this.error = err.json()
+        })
+
+        this.http.get(this.following_url).subscribe(res => {
+>>>>>>> master
           this.following_users_data = res.json();
           this.following_count = this.following_users_data.length;
           for (let i = 0; i < this.following_users_data.length; i++) {
@@ -86,10 +108,16 @@ export class GitUserInfoComponent implements OnInit {
               this.following_data = res.json();
               this.listFollowing.push(this.following_data)
             }, err => {
+<<<<<<< HEAD
              this.error = err.json().message;
             })
           }
          
+=======
+              this.error = err.json().message;
+            })
+          }
+>>>>>>> master
         }, err => {
           this.error = err.json().message;
         })
@@ -99,20 +127,31 @@ export class GitUserInfoComponent implements OnInit {
       })
     });
 
-
   }
 
 
+<<<<<<< HEAD
   follower(repourl) {
     this.userservice.userDetails(repourl).subscribe(data => {
       this.followers_data = data.json();
       this.followers_count = this.followers_data.length
       for (let i = 0; i < this.followers_data.length ; i++) {
+=======
+  followers(repourl) {
+    this.userservice.userDetails(repourl).subscribe(data => {
+      this.followers_data = data.json();
+      this.followers_count = this.followers_data.length
+      for (let i = 0; i < this.followers_data.length; i++) {
+>>>>>>> master
         this.userservice.userDetails(this.followers_data[i].login).subscribe(res => {
           this.followers_user_data = res.json();
           this.listFollowers.push(this.followers_user_data)
         }, err => {
+<<<<<<< HEAD
           this.error = err.json().message;
+=======
+          this.error = err.json().message
+>>>>>>> master
         })
       }
     }, err => {
@@ -129,8 +168,14 @@ export class GitUserInfoComponent implements OnInit {
     this.modal.close();
   }
 
+<<<<<<< HEAD
   copyLink(){
    $( "input" ).select();
    document.execCommand("copy")
+=======
+  copyLink() {
+    $("input").select();
+    document.execCommand("copy")
+>>>>>>> master
   }
 }
