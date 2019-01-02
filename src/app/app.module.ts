@@ -10,19 +10,8 @@ import { GitSearchComponent } from './git-search/git-search.component';
 import { GitUserInfoComponent } from './git-user-info/git-user-info.component';
 import { UserService } from './Services/user.service';
 import { HeaderComponent } from './header/header.component';
-<<<<<<< HEAD
-import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
-=======
-<<<<<<< HEAD
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
-=======
-import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
->>>>>>> master
->>>>>>> aditya
 
 const appRoutes : Routes =[
   { path: '', redirectTo: 'gitSearch', pathMatch: 'full'}, 
@@ -43,14 +32,9 @@ const appRoutes : Routes =[
     HttpModule,
     NgxPaginationModule,
     MatInputModule,
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
     MatFormFieldModule,
-    MatTabsModule,
-=======
->>>>>>> master
->>>>>>> aditya
+ 
     BrowserAnimationsModule, 
     MatTooltipModule,
     RouterModule.forRoot(appRoutes, {useHash:true})
